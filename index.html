@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat Bot</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h4>Hello</h4>
+        <style>
+            .rw-conversation-container .rw-header{background-color:hsl(251, 34%, 26%); direction: rtl;}
+            .rw-conversation-container .rw-messages-container .rw-message .rw-client{background-color: hsl(251, 34%, 26%);}
+            .rw-launcher{background-color: hsl(251, 34%, 26%);}
+            .rw-conversation-container .rw-reply{background-color: hsl(251, 34%, 26%); border: 1px solid hsl(251, 34%, 26%);}
+        </style>
+        <script>!(function () {
+            let e = document.createElement("script"),
+              t = document.head || document.getElementsByTagName("head")[0];
+            (e.src =
+              "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+              // Replace 1.x.x with the version that you want
+              (e.async = !0),
+              (e.onload = () => {
+                sessionStorage.clear()
+                localStorage.clear()
+                window.WebChat.default(
+                  {
+                    initPayload: '/company',
+                    customData: { language: "ar" },
+                    socketUrl: "http://localhost:5005",
+                    title: 'موسم الرياض',
+                    subtitle: 'صلة',
+                    profileAvatar: "./assets/robot.svg",
+                    openLauncherImage: "./assets/comment-dots.svg",
+                    closeImage:"./assets/angle-down.svg",
+                    showMessageDate: true ,
+                    storage: "session",
+                    inputTextFieldHint: " كيف اقدر اساعدك",
+                    customMessageDelay: (message) => {
+                    let delay = message.length * 30;
+                    if (delay > 3 * 1000) delay = 3 * 1000;
+                    if (delay < 800) delay = 800;
+                    return delay;
+                    },
+                    // add other props here
+                  },
+                  null
+                );
+              }),
+              t.insertBefore(e, t.firstChild);
+          })();
+          </script>
+    </body>
+</html>
